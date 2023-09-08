@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+.video-container {
+    width: 300px;
+    height: 225px;
+    overflow: hidden;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+  }
+
+  /* Style for the video element */
+  video {
+    width: 100%;
+    height: 100%;
+  }
+
+.navbar{
+  position: absolute;
+    bottom: 81px;
+    width: 237px;
+    height: 47px;
+    border: 12px solid red;
+    background: #28d1bb;
+    left: 51px;
+}
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom right, #5fee17, #fb23e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* .container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+  } */
+
+  input {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #de790d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #ff5500;
+  }
+
+  p {
+    font-size: 1.2em;
+    margin-top: 20px;
+    opacity: 0; /* Start with zero opacity */
+    animation: fadeIn 1s ease-out forwards; /* Apply fade-in animation */
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1; /* Fade in the element */
+    }
+  }
+</style>
+<script>
+async function setupCamera() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const videoElement = document.getElementById("live-camera-feed");
+    videoElement.srcObject = stream;
+  } catch (error) {
+    console.error("Error accessing the camera:", error);
+  }
+}
+
+// Call the setupCamera function when the page loads
+window.addEventListener("load", setupCamera);
+
+</script>
+<div class ="navbar">
+  <a href="second.html">Click Here</a>
+  
+</div>
+<title>Birthday Wishes</title>
+</head>
+
+<div class="container"></div>
+
+<div class="video-container">
+  <video id="live-camera-feed" autoplay></video>
+</div>
+
+<body>
+<div class="container">
+  <h2 style="color: #ff6600;">Happy Birthday!</h2>
+  <p>Enter the name of the person you want to wish:</p>
+  <input type="text" id="nameInput" placeholder="Enter name">
+  <button onclick="wishBirthday()">Wish</button>
+  <p id="birthdayMessage"></p>
+</div>
+
+<script>
+function wishBirthday() {
+  const name = document.getElementById("nameInput").value;
+  const birthdayMessage = document.getElementById("birthdayMessage");
+  
+  if (name.trim() === "") {
+    birthdayMessage.textContent = "Please enter a name.";
+  } else {
+    birthdayMessage.textContent = `Happy Birthday, ${name}! 🎉🎂 you are older than yesterday but younger than tomorrow , Happy birthday once agin `;
+  }
+}
+</script>
+</body>
+</html>
+
