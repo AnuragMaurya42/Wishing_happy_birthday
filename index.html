@@ -1,138 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-
-.video-container {
-    width: 300px;
-    height: 225px;
-    overflow: hidden;
-    /* border: 1px solid #ccc;
-    border-radius: 5px; */
-  }
-
-  /* Style for the video element */
-  video {
-    width: 100%;
-    height: 100%;
-  }
-
-.navbar{
-  position: absolute;
-    bottom: 81px;
-    width: 237px;
-    height: 47px;
-    border: 12px solid red;
-    background: #28d1bb;
-    left: 51px;
-}
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: linear-gradient(to bottom right, #5fee17, #fb23e5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-
-  /* .container {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-  } */
-
-  input {
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-
-  button {
-    padding: 10px 20px;
-    background-color: #de790d;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #ff5500;
-  }
-
-  p {
-    font-size: 1.2em;
-    margin-top: 20px;
-    opacity: 0; /* Start with zero opacity */
-    animation: fadeIn 1s ease-out forwards; /* Apply fade-in animation */
-  }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1; /* Fade in the element */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #00c9ff, #92fe9d);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: backgroundShift 10s ease-in-out infinite alternate;
     }
-  }
-</style>
-<script>
-async function setupCamera() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    const videoElement = document.getElementById("live-camera-feed");
-    videoElement.srcObject = stream;
-  } catch (error) {
-    console.error("Error accessing the camera:", error);
-  }
-}
 
-// Call the setupCamera function when the page loads
-window.addEventListener("load", setupCamera);
+    @keyframes backgroundShift {
+      0% { background-position: left top; }
+      100% { background-position: right bottom; }
+    }
 
-</script>
-<div class ="navbar">
-  <a href="second.html">Click Here</a>
-  
-</div>
-<title>Birthday Wishes</title>
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    h2 {
+      color: #ff4081;
+      margin-bottom: 20px;
+      font-size: 2em;
+      animation: bounceIn 1s ease-in-out;
+    }
+
+    .video-container {
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    input {
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #673ab7;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #512da8;
+      transform: scale(1.05);
+    }
+
+    p#birthdayMessage {
+      font-size: 1.1em;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .show-message {
+      opacity: 1 !important;
+    }
+
+    .navbar {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #6328d1;
+      padding: 12px 30px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: slideInUp 1.5s ease-out;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.8); }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes slideInUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
-
-<div class="container"></div>
-
-<div class="video-container">
-  <video id="live-camera-feed" autoplay></video>
-</div>
-
 <body>
-<div class="container">
-  <h2 style="color: #ff6600;">Happy Birthday!</h2>
-  <p>Enter the name of the person you want to wish:</p>
-  <input type="text" id="nameInput" placeholder="Enter name">
-  <button onclick="wishBirthday()">Wish</button>
-  <p id="birthdayMessage"></p>
-</div>
+  <div class="video-container">
+    <video id="live-camera-feed" autoplay></video>
+  </div>
 
-<script>
-function wishBirthday() {
-  const name = document.getElementById("nameInput").value;
-  const birthdayMessage = document.getElementById("birthdayMessage");
-  
-  if (name.trim() === "") {
-    birthdayMessage.textContent = "Please enter a name.";
-  } else {
-    birthdayMessage.textContent = `Happy Birthday, ${name}! 🎉🎂 you are older than yesterday but younger than tomorrow , Happy birthday once agin `;
-  }
-}
-</script>
+  <div class="container">
+    <h2>🎉 Happy Birthday! 🎂</h2>
+    <p>Enter the name of the person you want to wish:</p>
+    <input type="text" id="nameInput" placeholder="Enter name" />
+    <button onclick="wishBirthday()">Wish</button>
+    <p id="birthdayMessage"></p>
+  </div>
+
+  <div class="navbar">
+    <a href="second.html">Click  to See the Surprise 🎁 <br>❤️❤️❤️❤️❤️</a>
+  </div>
+
+  <script>
+    const messages = [
+      "Happy Birthday, {name}! 🎉 May your day sparkle with joy and laughter!",
+      "Cheers to you, {name}! 🥳 May this birthday be as awesome as you are!",
+      "To the amazing {name}, happy birthday! 🎂 Shine on and stay fabulous!",
+      "{name}, it's your special day! 💫 Wishing you love, cake, and laughter!",
+      "Have a blast, {name}! 🎊 Your birthday deserves fireworks and magic!",
+      "Hey {name}, you're not getting older, just more legendary! 🎖️",
+      "Wishing you sweet moments and cherished memories, {name}! 🍰🎈",
+      "{name}, today is all about YOU. Celebrate like never before! 🥂",
+      "May your day be filled with rainbows and unicorns, {name}! 🦄🌈",
+      "Happy cake day, {name}! 🎂 Let the frosting fly!",
+      "Another year of awesomeness for {name}! ✨ Happy Birthday!",
+      "You age like fine wine, {name}! 🍷 Cheers to you!",
+      "Sending hugs, wishes, and birthday sparkles your way, {name}! 💖",
+      "Yo {name}, time to party like it’s your birthday! 🕺💃",
+      "Birthdays come and go, but legends like {name} live forever! 🌟",
+      "Eat cake, make wishes, and dance all night, {name}! 🍰💃",
+      "Life's better with candles and cake, {name}! 🕯️🎂",
+      "The world got better when {name} was born. 🌍💫",
+      "{name}, may all your dreams take flight this year! ✈️🎁",
+      "A toast to you, {name}! 🥂 May your smile be endless!",
+      "Hey {name}, this day is reserved for smiles and cake ONLY! 🍰😄",
+      "Shine bright like a diamond today, {name}! 💎✨",
+      "You’re one in a melon, {name}! 🍉 Happy Birthday!",
+      "Make this day count, {name} — it’s yours to shine! 🌞",
+      "Here’s to a day filled with love, joy, and cake, {name}! 🍰❤️",
+      "Birthday vibes loading... 🎉 Ready, {name}? Go!",
+      "You deserve the world, {name}. 🌍 Celebrate big today!",
+      "{name}, dance like no one’s watching—it’s your day! 💃🕺",
+      "Every candle is a wish, {name}. Blow ‘em all out! 🕯️💨",
+      "Happy Birthday, {name}! Let's turn the world pink today! 💖"
+    ];
+
+    function wishBirthday() {
+      const name = document.getElementById("nameInput").value.trim();
+      const msg = document.getElementById("birthdayMessage");
+
+      if (name === "") {
+        msg.textContent = "Please enter a name.";
+      } else {
+        const random = messages[Math.floor(Math.random() * messages.length)];
+        msg.textContent = random.replace("{name}", name);
+        msg.classList.add("show-message");
+      }
+    }
+
+    async function setupCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const video = document.getElementById("live-camera-feed");
+        video.srcObject = stream;
+      } catch (err) {
+        console.error("Camera access denied or error:", err);
+      }
+    }
+
+    window.addEventListener("load", setupCamera);
+  </script>
 </body>
 </html>
-

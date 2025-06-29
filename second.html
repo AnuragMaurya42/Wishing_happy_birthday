@@ -1,123 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TikTok</title>
-    <style>
-      .watermark {
-        position: fixed;
-        color: rgba(20, 255, 24, 0.5);
-        font-size: 24px;
-        font-weight: bold;
-        transform: rotate(-45deg);
-        pointer-events: none;
-        z-index: 9999;
-      }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TikTok Styled Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      video {
-        margin: 10px;
-        border: 4px solid rgba(93, 181, 242, 0.72);
-        padding: 1px 1px;
-        float: left;
-        position: relative;
-        box-sizing: border-box;
-        box-shadow: 6px 6px rgb(192, 198, 255);
-        animation-name: anurag;
-        animation-duration: 6s;
-        animation-iteration-count: infinite;
-      }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      min-height: 100vh;
+      color: white;
+      overflow-x: hidden;
+    }
 
-      @keyframes anurag {
-        0% {
-          top: 60px;
-          left: 0px;
-        }
-        25% {
-          top: 60px;
-          left: 60px;
-        }
-        50% {
-          top: 0px;
-          left: 60px;
-        }
-        100% {
-          top: 0px;
-          left: 0px;
-        }
-      }
+    .logo {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #00ffc3;
+      text-shadow: 2px 2px 5px black;
+    }
 
-      #search {
-        border-radius: 20px;
-        /* Remove fixed positioning */
-      }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 10px;
+      justify-items: center;
+    }
 
-      body {
-        background: url("1686277006446.jpg"); /* Use your image file here */
-        background-size: contain; /* Fit the image inside the body */
-        background-repeat: repeat; /* Prevent image repetition */
-        background-position: right top; /* Center the image */
-        height: 100vh; /* Set the height to the viewport height */
-        margin: 0; /* Remove default margin */
-      }
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid #00ffc3;
+    }
 
-      .logo {
-        width: 50%; /* Adjust the logo size for mobile */
-        display: block; /* Center the logo */
-        margin: 0 auto; /* Center the logo horizontally */
-        padding-top: 20px; /* Add some spacing from the top */
-      }
+    video:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+    }
 
-      video:hover {
-        background-color: rgb(246, 53, 227);
-        cursor: pointer;
-      }
+    .watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-      .deco {
-        background-color: aquamarine;
-        display: inline-block;
-        position: absolute;
-        right: 10px; /* Adjust the right position */
-        top: 10px; /* Adjust the top position */
-        padding: 5px; /* Add some padding */
-      }
-    </style>
-    <script>
-      // Function to create and position watermark elements
-      function createWatermarks() {
-        const content = "Anurag Maurya"; // Text for the watermark
+    .watermark span {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.07);
+      font-size: 3em;
+      transform: rotate(-45deg);
+      user-select: none;
+      white-space: nowrap;
+    }
 
-        // Get the dimensions of the viewport
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        // Calculate the number of watermarks needed to cover the entire viewport
-        const numX = Math.ceil(viewportWidth / 200); // Adjust 200 as needed
-        const numY = Math.ceil(viewportHeight / 200); // Adjust 200 as needed
-
-        // Create and position watermark elements
-        for (let i = 0; i < numX; i++) {
-          for (let j = 0; j < numY; j++) {
-            const watermark = document.createElement("div");
-            watermark.className = "watermark";
-            watermark.style.left = `${i * 300}px`; // Adjust spacing as needed
-            watermark.style.top = `${j * 300}px`; // Adjust spacing as needed
-            watermark.textContent = content;
-            document.body.appendChild(watermark);
-          }
-        }
-      }
-
-      // Call the function to create watermarks when the page loads
-      window.onload = createWatermarks;
-    </script>
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); }
+      100% { transform: translateY(-100vh) rotate(-45deg); }
+    }
+  </style>
 </head>
 <body>
-  <div class="logo">
-              Anurag Maurya
-  </div>
 
-  
+  <div class="logo">Anurag Maurya</div>
+
+  <!-- Watermark Layer -->
+  <div class="watermark" id="watermark-layer"></div>
+
+
+
+
+
+
 
 <video width="200" height="360" controls poster="loding.png">
   <source src="WhatsApp Video 2023-09-06 at 18.40.38.mp4" type="video/mp4">
@@ -413,5 +383,15 @@ Your browser does not support the video tag.
   <div class="deco">
     <em></em>
   </div>
+
+
+
+
+   <script>
+    // Dynamically add watermark spans
+ 
+
+    window.onload = createWatermarks;
+  </script>
 </body>
 </html>
